@@ -6,7 +6,7 @@
 
 ## Первичная настройка
   Скачиваем проект. Командой git clone https://github.com/Fizic/IT_NEFT_CASE_NUMBER_4/ <br />
-  Устанавливаем python 3.6.9.<br />
+  Устанавливаем python 3.6.8.<br />
   Устанавливаем библиотеки. Используем команду pip install -U -r requirements.txt <br />
 ## Использование
   Запускаем файл main.py для создания файла result.xlsx.<br />
