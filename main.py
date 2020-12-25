@@ -35,7 +35,8 @@ def first_customization() -> None:
 
 data = pd.read_excel('data.xlsx', 0, header=5)
 with xlsxwriter.Workbook('result.xlsx') as workbook:
-    b = []
+    Kp_ggk = []
+    Kp_net = []
     worksheet = workbook.add_worksheet("result")
     first_customization()
 
@@ -44,20 +45,15 @@ with xlsxwriter.Workbook('result.xlsx') as workbook:
                                              data['Den'][6:], data['GK'][6:],
                                              data['W'][6:], data['PE'][6:]):
         Kp = (calculate_kp_neutron_log(GK, W) + calculate_kp(Den, CALI)) / 2
-        b.append(calculate_kp(Den, CALI))
+        Kp_net.append(calculate_kp_neutron_log(GK, W))
+        Kp_ggk.append(calculate_kp(Den, CALI))
         worksheet.write(row, 0, MD)
         worksheet.write(row, 1, Kp)
         if Kp > 0.072:
             worksheet.write(row, 2, 1)
         else:
             worksheet.write(row, 2, 0)
-plt.plot(b, data["MD"][6:][::-1])
+plt.plot(Kp_ggk, data["MD"][6:])
 plt.show()
-"""
-<h1 align="center">IT_NEFT_CASE_NUMBER_4</h1>
-<h2 align="center">
-
-
-## Описание решения
-Для решения расчетной части кейса был написан код на языке Python с использование таких библиотек как: Pandas, Matplotlib, xlsxwriter.`
-"""
+plt.plot(Kp_net, data["MD"][6:])
+plt.show()
